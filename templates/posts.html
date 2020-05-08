@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>City Lists</title>
+{% endblock %}
+
+{% block body %}
+<h1>All Cities</h1>
+
+    <hr>
+    <h2>Weather reports of the citites:</h2>
+
+    <form action='/' method='POST'>
+      <div class="form-group">
+  <label for="title">Enter City Name</label>
+  <input type="text" class="form-control" name='title'  id="title" >
+</div>
+
+      <input type='submit' value='Save'>
+    </form>
+    <hr>
+
+    {% for post in posts %}
+        <h2>{{ post.title }}</h2>
+        <p>description is {{ post.content }}</p>
+        <p>temperature is {{ post.temperature }} F</p>
+        <p><a href="'http://openweathermap.org/img/w/'+{{post.icon}}+'.png'"></a></p>
+        <a class="btn btn-danger" href='/delete/{{post.id}}'>Delete</a>
+        <hr>
+    {% endfor%}
+
+{% endblock %}
